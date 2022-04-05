@@ -75,9 +75,27 @@ values
 alter table songs
 add column song_id serial primary key
 
+-- update existing user
+update users
+set password = 'whatsup', membership_type = 'paid member'
+where user_id = 1
+
+-- update existing playlist
+update playlists
+set title = 'favorites'
+where playlist_id = 1
+
+
 -- DELETE 
 
 -- delete a song by id
 delete from songs
 where song_id = 2;
 
+-- delete playlist
+delete from playlists
+where playlist_id = 2
+
+--delete relationship (unfollow)
+delete from relationships
+where user_id_follower = 1 and user_id_followed = 2
