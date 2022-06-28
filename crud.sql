@@ -2,41 +2,52 @@
 
 -- CREATE 
 
+-- create membership table
+create table memberships (
+	membership_id serial primary key,
+	membership_type varchar not null,
+)
+
 -- create users table 
 create table users (
-user_id serial primary key,
-user_name varchar (20) unique not null,
-full_name varchar not null,
-password varchar not null,
-created_at timestamp not null,
-membership_type varchar not null);
+    user_id serial primary key,
+    user_name varchar (20) unique not null,
+    full_name varchar not null,
+    password varchar not null,
+    created_at timestamp not null,
+    membership_id int, 
+        foreign key (membership_id)
+	    references memberships(membership_id)
+);
 
 -- create playlists table 
 create table playlists (
-playlist_id serial primary key,
-user_id int, foreign key(user_id)
-	references users(user_id),
-title varchar,
-number_of_songs int,
-length int
+	playlist_id serial primary key,
+	user_id int, 
+		foreign key(user_id)
+		references users(user_id),
+	title varchar,
+	number_of_songs int,
+	length int
 );
 
 -- create song table 
 create table songs (
-playlist_id int, foreign key (playlist_id)
-	references playlists(playlist_id),
-title varchar,
-length int, 
-artist varchar,
-album varchar,
-genre varchar
+	playlist_id int,
+		foreign key (playlist_id)
+		references playlists(playlist_id),
+	title varchar,
+	length int, 
+	artist varchar,
+	album varchar,
+	genre varchar
 );
 
 -- create realtionship table 
 create table relationships (
-user_id_follower int,
-user_id_followed int,
-created_at timestamp
+	user_id_follower int,
+	user_id_followed int,
+	created_at timestamp
 )
 
 --  READ 
