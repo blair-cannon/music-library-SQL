@@ -3,13 +3,13 @@
 -- CREATE 
 
 -- create membership table
-create table memberships (
+CREATE TABLE memberships (
 	membership_id serial primary key,
 	membership_type varchar not null,
 )
 
 -- create users table 
-create table users (
+CREATE TABLE users (
     user_id serial primary key,
     user_name varchar (20) unique not null,
     full_name varchar not null,
@@ -21,7 +21,7 @@ create table users (
 );
 
 -- create playlists table 
-create table playlists (
+CREATE TABLE playlists (
 	playlist_id serial primary key,
 	user_id int, 
 		foreign key(user_id)
@@ -32,7 +32,7 @@ create table playlists (
 );
 
 -- create song table 
-create table songs (
+CREATE TABLE songs (
 	playlist_id int,
 		foreign key (playlist_id)
 		references playlists(playlist_id),
@@ -44,7 +44,7 @@ create table songs (
 );
 
 -- create realtionship table 
-create table relationships (
+CREATE TABLE relationships (
 	user_id_follower int,
 	user_id_followed int,
 	created_at timestamp
