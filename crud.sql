@@ -27,7 +27,6 @@ CREATE TABLE playlists (
 		foreign key(user_id)
 		references users(user_id),
 	title varchar,
-	number_of_songs int,
 	length int
 );
 
@@ -52,19 +51,25 @@ CREATE TABLE relationships (
 
 --  READ 
 
+-- added two membership types
+insert into memberships (membership_type)
+values 
+	('free trial'),
+	('paid member')
+
 -- added two users
 insert into users (user_name, full_name, password, created_at, membership_type)
 values 
-('blair.preston', 'Blair Preston', 'helllllo', '04/02/2022', 'free trial' ),
-('rubber.ducky', 'Rubber Ducky', 'sup', '04/02/2022', 'paid member' )
+	('blair.preston', 'Blair Preston', 'helllllo', '04/02/2022', 1 ),
+	('rubber.ducky', 'Rubber Ducky', 'sup', '04/02/2022', 2 )
 
 -- added playlists from both users 
-insert into playlists (user_id, title, number_of_songs, length)
+insert into playlists (user_id, title, length)
 values 
-('1', 'summer dazeee', '27', '81'),
-('1', 'Christmas Songs', '35', '105'),
-('2', 'throwbacks', '127', '381'),
-('2', 'partayy', '20', '60')
+('1', 'summer dazeee', '81'),
+('1', 'Christmas Songs', '105'),
+('2', 'throwbacks', '381'),
+('2', 'partayy', '60')
 
 -- added songs to both of user 1's playlists 
 insert into songs (playlist_id, title, length, artist, album, genre)
